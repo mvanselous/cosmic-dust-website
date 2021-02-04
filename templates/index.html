@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Mark Van Selous">
+    <meta name="description" content="Query Form">
+    <title>Cosmic Dust Query Form</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
+	<link href="https://fonts.googleapis.com/css?family=EB Garamond" rel="stylesheet">
+	<link rel="stylesheet" href= {{ url_for('static', filename='my_styles.css') }}>
+	<style>
+	    body {
+		background-image: url({{ url_for('static', filename='img/background_1.png') }})
+	    }
+	</style>
+</head>
+
+<body>
+<nav class="navbar navbar-text bg-secondary">
+	<a class="nav-link" href= {{ url_for('index') }} >Home</a>
+	<a class="nav-link" href= {{ url_for('form') }} >Calculate!</a>
+	<a class="nav-link" href= {{ url_for('documentation') }} > 	Documentation</a>
+	<a class="nav-link" href= {{ url_for('about_api') }}> API </a>
+</nav>
+	
+<h1>Main Page of Website</h1>
+text about calculator
+
+</body>
+</html>

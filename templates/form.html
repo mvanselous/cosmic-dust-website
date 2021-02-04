@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Mark Van Selous">
+    <meta name="description" content="Query Form">
+    <title>Cosmic Dust Query Form</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    <link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+	<link rel="stylesheet" href= {{ url_for('static', filename='my_styles.css') }}>
+	<style>
+	    body {
+		background-image: url({{ url_for('static', filename='img/background_1.png') }})
+	    }
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-text bg-secondary">
+		<a class="nav-link" href= {{ url_for('index') }} >Home</a>
+		<a class="nav-link" href= {{ url_for('form') }} >Calculate!</a>
+		<a class="nav-link" href= {{ url_for('documentation') }} > 	Documentation</a>
+		<a class="nav-link" href= {{ url_for('about_api') }}> API </a>
+	</nav>
+	<br>
+	<h1><b style="color:white">Calculator</b></h1>
+	<br>
+	<br>
+	<form action="/calculation" method="POST">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-2 sidebar border border-warning">
+				<h3><b style="color:white;">Advanced Options</b></h3>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="AdvancedRadio_1" id="AdvancedRadio_1" checked>
+				  <label class="form-check-label form_header" for="AdvancedRadio_1">
+					Radio Option 1
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="AdvancedRadio_2" id="AdvancedRadio_2">
+				  <label class="form-check-label form_header" for="AdvancedRadio_2">
+					Radio Option 2
+				  </label>
+				</div>
+			</div>
+			<div class="col-8">
+				<div class="form-group row">
+					<div class="col-6">
+						<label for="material_1"><b class="form_header">First Material</b></label>
+						<select class="form-select" name="material_1">
+							<option selected>Choose...</option>
+							<option>Ice</option>
+							<option>Organics</option>
+							<option>Tholin</option>
+							<option>Halley Dust</option>
+							<option>Mat5</option>
+							<option>Mat6</option>
+						</select>
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute"><a href= {{ url_for('documentation') }} style="color:#99CCFF"> Learn about the supported materials</a></small>
+					</div>
+					<div class="col-6">
+						<label for="material_2" class="form_header"><b>Second Material</b> (optional)</label>
+						<select class="form-select" name="material_2">
+							<option selected>Choose...</option>
+							<option>Ice</option>
+							<option>Organics</option>
+							<option>Tholin</option>
+							<option>Halley Dust</option>
+							<option>Mat5</option>
+							<option>Mat6</option>
+							<option>None</option>
+						</select>
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Currently only up to two materials are supported</small>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-6">
+						<label for"polarization_value" class="form_header">Polarization Value</label>
+						<input type="float" class="form-control" name="color_1">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute"><a href= {{ url_for('documentation') }} style="color:#99CCFF"> Learn about the distribution of the polarization values in this data set.</a></small>
+					</div>
+					<div class="col-6">
+						<label for"polarization_range" class="form_header">Polarization Range</label>
+						<input type="float" class="form-control" name="polarization_range">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Polarization Range</small>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-6">
+						<label for"color_value" class="form_header">Color Value</label>
+						<input type="float" class="form-control" name="color_value">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Color</small>
+					</div>
+					<div class="col-6">
+						<label for"color_range" class="form_header">Color Range</label>
+						<input type="float" class="form-control" name="color_range">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Color Range</small>
+					</div>
+				</div>			
+				<div class="form-group row">
+					<div class="col-6">
+						<label for"step_in_ratio" class="form_header">Step in Ratio</label>
+						<input type="float" class="form-control" name="step_in_ratio" min="0" max="100" step="1">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Integers between 0 and 100 percent</small>
+					</div>
+					<div class="col-6">
+						<label for"angle" class="form_header">Angle</label>
+						<input type="number" class="form-control" name="angle" min="0" max="180" step="1">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Integers between 0 and 180 degrees</small>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-3">
+						<button type="reset" class="btn btn-danger btn-lg" style="width:100%" value="Reset">Reset</button>
+					</div>
+					<div class="col-3">
+						<button type="input" class="btn btn-secondary btn-lg" style="width:100%">See Example</button>
+					</div>
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary btn-lg btn-block" style="width:100%">Submit</button>
+					</div>
+				</div>
+			</div>
+			<div class=col-2>
+			</div>	
+		</div>
+	</div>
+	</form>
+</body>
+</html>

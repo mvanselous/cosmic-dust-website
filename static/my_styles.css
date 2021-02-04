@@ -1,0 +1,21 @@
+.navbar{
+	padding-left: 220px;
+	padding-right: 220px
+}
+
+.nav-link {
+	color: white;
+	}
+
+	.form-group {margin-top: 1rem;
+}
+
+.text-mute{
+	color:white;
+	font-size: 16px;
+}
+.form_header{
+	color:white;
+	font-weight:600;
+	font-size: 18px;
+}
