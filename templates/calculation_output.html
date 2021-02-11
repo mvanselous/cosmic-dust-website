@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href= {{ url_for('static', filename='my_styles.css') }}>
 	<style>
 	    body {
-		background-image: url({{ url_for('static', filename='img/background_1.png') }})
+		background-color:#330099;
 	    }
 	</style>
 </head>
@@ -24,11 +24,39 @@
 </nav>
 	
 <h1 style="color:white"> Results</h1>
-	
-{% for key,value in form_data.items() %}
-<h2 style="color:white"> {{key}}</h2>
-<p style="color:white"> {{value}}</p>
-{% endfor %}
+
+<div class="container-fluid">
+    <div class="row">
+	<div class="col-2 sidebar border border-warning position-fixed" id="sticky-sidebar">
+	    <a class="btn btn-success" href= '/calculation/outfile.csv' role="button">Download CSV</a>
+	</div>
+	<!-- offset-2 is needed because their is a bug with bootstrap and creating sticky sidebars. -->
+	<div class="col-8 offset-2">
+	    <div class="form-group row">
+		<table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive">
+		    <thead>
+			<tr>
+			{% for item in table_header %}
+			    <th scope="col">{{item}}</th>
+			{% endfor %}
+			</tr>
+		    </thead>
+		    <tbody>
+			{% for row in table_data %}
+			<tr>
+			    {% for item in row %}
+			    <td style="color:white"> {{item}}</td>
+			    {% endfor %}
+			</tr>
+			{% endfor %}
+		    </tbody>
+		</table>
+	    </div>
+	</div>
+	<div class=col-2>
+	</div>	
+    </div>
+</div>
 
 </body>
 </html>
