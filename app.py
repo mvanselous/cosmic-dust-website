@@ -22,25 +22,39 @@ import csv
 
 app = Flask(__name__)
 
+#I will be adding a new form page for each of the possible calculations.
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/form')
-def form():
-    return render_template('form.html')
+@app.route('/polarization')
+def polarization_form():
+    return render_template('polarization_form.html')
+
+@app.route('/size')
+def size_form():
+    return render_template('size_form.html')
+
+@app.route('/color')
+def color_form():
+    return render_template('color_form.html')
+
 
 @app.route('/calculation', methods = ['POST', 'GET'])
 def calculation():
-    command= 'sudo ./simple'
+    command= 'sudo ./calc_c'
+#    command= 'sudo ./simple'
     
     if request.method == 'GET':
-        return 'wrong request'
+        return 'bad request'
     if request.method == 'POST':        
         form_data = request.form
         for item in form_data:
-            command = " ".join([command, item, form_data.get(item)])
-        #see the older version (main.py) for how this command is constructed
+            command = " ".join([command, form_data.get(item)])
+        print(command)
+                
+        #see an older version (main.py) for how this command is constructed
         subprocess.run(command,shell=True) 
         #running this should create/update "output.csv"
         with open('outfile.csv', newline='') as output_file:
@@ -57,13 +71,7 @@ def calculation():
             
         #now we need to read output.csv and input data to output
             return render_template('calculation_output.html',table_header = table_header, table_data = table_data)
-@app.route('/calculation/<file_name>',methods=['GET', 'POST'])
-def getFile(file_name):
-     return send_file(file_name, as_attachment=True)
 
-@app.route('/api')
-def about_api():
-    return render_template('api_page.html')
 
 @app.route('/documentation')
 def documentation():

@@ -18,8 +18,9 @@
 
 <body>
 	<nav class="navbar navbar-text bg-secondary">
-		<a class="nav-link" href= {{ url_for('index') }} >Home</a>
-		<a class="nav-link" href= {{ url_for('form') }} >Calculate!</a>
+		<a class="nav-link" href= {{ url_for('polarization_form') }} >Polarization</a>
+		<a class="nav-link" href= {{ url_for('size_form') }} >Size and Ratio</a>
+		<a class="nav-link" href= {{ url_for('color_form') }} >Color</a>
 		<a class="nav-link" href= {{ url_for('documentation') }} > 	Documentation</a>
 	</nav>
 	<br>
@@ -27,10 +28,12 @@
 	<br>
 	<br>
 	<form action="/calculation" method="POST">
+	<input type="hidden" id="function_name" name="function_name" value="find_pola">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2 sidebar border border-warning">
 				<h3><b style="color:white;">Advanced Options</b></h3>
+<!--
 				<div class="form-check">
 				  <input class="form-check-input" type="radio" name="AdvancedRadio_1" id="AdvancedRadio_1" checked>
 				  <label class="form-check-label form_header" for="AdvancedRadio_1">
@@ -43,6 +46,7 @@
 					Radio Option 2
 				  </label>
 				</div>
+-->
 			</div>
 			<div class="col-8">
 				<div class="form-group row">
@@ -51,7 +55,7 @@
 						<select class="form-select" name="material_1">
 							<option selected>Choose...</option>
 							<option>Ice</option>
-							<option>Organics</option>
+							<option>Organic</option>
 							<option>Tholin</option>
 							<option>Halley Dust</option>
 							<option>Mat5</option>
@@ -64,7 +68,7 @@
 						<select class="form-select" name="material_2">
 							<option selected>Choose...</option>
 							<option>Ice</option>
-							<option>Organics</option>
+							<option>Organic</option>
 							<option>Tholin</option>
 							<option>Halley Dust</option>
 							<option>Mat5</option>
@@ -76,46 +80,40 @@
 				</div>
 				<div class="form-group row">
 					<div class="col-6">
-						<label for"polarization_value" class="form_header">Polarization Value</label>
-						<input type="float" class="form-control" name="color_1">
-						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute"><a href= {{ url_for('documentation') }} style="color:#99CCFF"> Learn about the distribution of the polarization values in this data set.</a></small>
+						<label for"mat1_size" class="form_header">Size (Material 1)</label>
+						<input type="float" class="form-control" name="mat1_size">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute"><a href= {{ url_for('documentation') }} style="color:#99CCFF"> Learn about sizes.</a></small>
 					</div>
 					<div class="col-6">
-						<label for"polarization_range" class="form_header">Polarization Range</label>
-						<input type="float" class="form-control" name="polarization_range">
-						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Polarization Range</small>
+						<label for"mat2_size" class="form_header">Size (Material 2)</label>
+						<input type="float" class="form-control" name="mat2_size">
 					</div>
 				</div>
+				<!-- OLD Form-->	
 				<div class="form-group row">
-					<div class="col-6">
-						<label for"color_value" class="form_header">Color Value</label>
-						<input type="float" class="form-control" name="color_value">
-						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Color</small>
-					</div>
-					<div class="col-6">
-						<label for"color_range" class="form_header">Color Range</label>
-						<input type="float" class="form-control" name="color_range">
-						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Color Range</small>
-					</div>
-				</div>			
-				<div class="form-group row">
-					<div class="col-6">
-						<label for"step_in_ratio" class="form_header">Step in Ratio</label>
-						<input type="float" class="form-control" name="step_in_ratio" min="0" max="100" step="1">
-						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Integers between 0 and 100 percent</small>
-					</div>
 					<div class="col-6">
 						<label for"angle" class="form_header">Angle</label>
 						<input type="number" class="form-control" name="angle" min="0" max="180" step="1">
 						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Integers between 0 and 180 degrees</small>
 					</div>
+					<div class="col-6">
+								<label for"color_value" class="form_header">Color Filter</label>
+						<input type="float" class="form-control" name="color_value">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">About Color</small>
+					</div>
 				</div>
+				<div class="form-group row">
+					<div class="col-12">
+						<label for"step_in_ratio" class="form_header">Step in Ratio</label>
+						<input type="float" class="form-control" name="step_in_ratio">
+						<small id="HelpBlock" class="d-flex justify-content-center form-text text-mute">Integers between 0 and 100 percent</small>
+					</div>
+				</div>		
 				<div class="form-group row">
 					<div class="col-3">
 						<button type="reset" class="btn btn-danger btn-lg" style="width:100%" value="Reset">Reset</button>
 					</div>
 					<div class="col-3">
-						<button type="input" class="btn btn-secondary btn-lg" style="width:100%">See Example</button>
 					</div>
 					<div class="col-6">
 						<button type="submit" class="btn btn-primary btn-lg btn-block" style="width:100%">Submit</button>

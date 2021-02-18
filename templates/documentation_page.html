@@ -19,14 +19,34 @@
 
 <body>
 <nav class="navbar navbar-text bg-secondary">
-	<a class="nav-link" href= {{ url_for('index') }} >Home</a>
-	<a class="nav-link" href= {{ url_for('form') }} >Calculate!</a>
-	<a class="nav-link" href= {{ url_for('documentation') }} > 	Documentation</a>
-	<a class="nav-link" href= {{ url_for('about_api') }}> API </a>
+    <a class="nav-link" href= {{ url_for('polarization_form') }} >Polarization</a>
+    <a class="nav-link" href= {{ url_for('size_form') }} >Size and Ratio</a>
+    <a class="nav-link" href= {{ url_for('color_form') }} >Color</a>
+    <a class="nav-link" href= {{ url_for('documentation') }} > 	Documentation</a>
 </nav>
 	
-<h1>Documentation Page Explaining Calculator</h1>
-text about project
+<h1>Documentation Home</h1>
+
+<div class="container-fluid">
+    <div class="row">
+	<div class="col-2 sidebar border border-warning position-fixed" id="sticky-sidebar">
+	     <div class="list-group">
+		 <a href="#" class="list-group-item list-group-item-action active">Page 1</a>
+		 <a href="#" class="list-group-item list-group-item-action">Page 2</a>
+		 <a href="#" class="list-group-item list-group-item-action">Page 3</a>
+		 <a href="#" class="list-group-item list-group-item-action">Page 4</a>
+	     </div>
+	</div>
+	<!-- offset-2 is needed because their is a bug with bootstrap and creating sticky sidebars. -->
+	<div class="col-8 offset-2">
+	    <div class="form-group row">
+		<p style="color:white">The color is presented as a difference in magnitude between the brightness in red  and blue filters, color = -2.5 * log10((brightness_blue / brightness_red)); note that the solar color is not included here, so it should be subtracted from the observational data to fit the modeling results. Positive color is usually called red, and negative is called blue, neutral color is equal to zero. For a mixture of two materials, the resulting color is calculated as color = -2.5 * log10((brightness_blue_1+brightness_blue_2) / brightness_red_1+brightness_red_2)) ,where 1 and 2 mean material 1 and material 2.</p>
+	    </div>
+	</div>
+	<div class=col-2>
+	</div>	
+    </div>
+</div>
 
 </body>
 </html>
